@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Plugin to check whether ElasticSearch Returns products in what order -->
+    <type name="Magento\Elasticsearch\SearchAdapter\ResponseFactory">
+        <plugin name="Klevu_Override::debugRawResponseFromElasticSearch"
+                type="Klevu\Override\Plugin\ResponseCheck"
+                disabled="false"/>
+    </type>
+
+
+    <!-- Plugin on the Cleaner for finding Mage Cleaner requestData based on clenaer -->
+    <type name="Magento\Framework\Search\Request\Cleaner">
+        <plugin name="Klevu_Override::toMakeChangesInCleaner"
+                type="Klevu\Override\Plugin\Framework\Search\Request\CleanerPlugin"
+                disabled="false"/>
+    </type>
+
+    <!-- Plugin on the Cleaner for finding Klevu Cleaner requestData based on clenaer -->
+    <type name="Klevu\Categorynavigation\Framework\Request\Cleaner">
+        <plugin name="Klevu_Override::toMakeChangesInKlevuCleanerCN"
+                type="Klevu\Override\Plugin\Framework\Search\Request\KlevuCleanerPlugin"
+                disabled="false"/>
+    </type>
+
+    <type name="Klevu\Search\Framework\Request\Cleaner">
+        <plugin name="Klevu_Override::toMakeChangesInKlevuCleanerForSearch"
+                type="Klevu\Override\Plugin\Framework\Search\Request\KlevuCleanerPlugin"
+                disabled="false"/>
+    </type>
+
+</config>
